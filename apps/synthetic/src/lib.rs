@@ -120,7 +120,7 @@ pub enum Transport {
     Tcp,
 }}
 
-trait LoadgenProtocol: Send + Sync {
+pub trait LoadgenProtocol: Send + Sync {
     fn gen_req(&self, i: usize, p: &Packet, buf: &mut Vec<u8>);
     fn read_response(&self, sock: &Connection, scratch: &mut [u8]) -> io::Result<(usize, u64)>;
 }
@@ -910,7 +910,7 @@ fn run_local(
         .all(|p| p)
 }
 
-fn main() {
+pub fn main() {
     let matches = App::new("Synthetic Workload Application")
         .version("0.1")
         .arg(
